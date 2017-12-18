@@ -1,5 +1,4 @@
 group = 'org.jetbrains.elemental'
-version = '0.0.1-SNAPSHOT'
 
 apply plugin: 'kotlin2js'
 apply plugin: 'kotlin-dce-js'
@@ -16,8 +15,7 @@ dependencies {
 }
 
 kotlinFrontend {
-// uncomment this to specify exact nodejs version (bundle will be downloaded)
-//    downloadNodeJsVersion = "8.7.0"
+   downloadNodeJsVersion = "8.9.3"
 
     sourceMaps = false
 

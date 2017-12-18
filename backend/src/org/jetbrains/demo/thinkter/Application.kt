@@ -28,17 +28,17 @@ fun Application.main() {
         exception<NotImplementedError> { call.respond(HttpStatusCode.NotImplemented) }
     }
 
-    withSessions<Session> {
-        withCookieByValue {
-            settings = SessionCookiesSettings(transformers = listOf(SessionCookieTransformerMessageAuthentication(hashKey)))
+    install(Routing) {
+        withSessions<Session> {
+            withCookieByValue {
+                settings = SessionCookiesSettings(transformers = listOf(SessionCookieTransformerMessageAuthentication(hashKey)))
+            }
         }
-    }
 
-    transform.register<RpcData> {
-        TextContent(Gson().toJson(it), ContentType.Application.Json)
-    }
+        transform.register<RpcData> {
+            TextContent(Gson().toJson(it), ContentType.Application.Json)
+        }
 
-    routing {
         index(storage)
         postThought(storage, ::hash)
         delete(storage, ::hash)
@@ -47,6 +47,10 @@ fun Application.main() {
 
         login(storage, ::hash)
         register(storage, ::hash)
+
+        get("/frontend/frontend.bundle.js") {
+            call.respond(call.resolveClasspathWithPath("", "frontend.bundle.js")!!)
+        }
     }
 }
 

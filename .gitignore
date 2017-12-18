@@ -11,6 +11,8 @@ backend/.database/*
 .gradle
 build
 
+backend/resources/frontend.bundle.js
+
 *.versionsBackup
 *.releaseBackup
 release.properties
