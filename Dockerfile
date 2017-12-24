@@ -21,6 +21,5 @@ ENV PATH="/root/.sdkman/candidates/gradle/current/bin:${PATH}"
 
 RUN gradle frontend:build
 RUN cp frontend/build/bundle/frontend.bundle.js backend/resources/frontend.bundle.js
-RUN gradle backend:build
 
 CMD gradle backend:run
